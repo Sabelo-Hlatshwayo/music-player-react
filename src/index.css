@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    color: #222;
+    line-height: 1;
+    height: 100vh;
+    background-image: linear-gradient(
+        0deg,
+        rgba(247, 247, 247, 1) 23.8%,
+        rgba(252, 221, 221, 1) 92%
+    );
+}
