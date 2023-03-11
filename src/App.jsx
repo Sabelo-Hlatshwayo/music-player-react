@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import Title from "./components/Title";
 
 export default class App extends Component {
     render() {
-        return <div>MUSIC PLAYER</div>;
+        return (
+            <div>
+                <Title />
+            </div>
+        );
     }
 }
