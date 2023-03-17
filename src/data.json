@@ -2,19 +2,22 @@
     {
         "artist": "Adele",
         "song": "Turning Tables",
+        "album": "21",
         "coverImage": "public/images/adele.jpg",
-        "url": "./music/Turning Tables.mp3"
+        "url": "public/music/Turning Tables.mp3"
     },
     {
         "artist": "50 Cent",
         "song": "In Da Club",
+        "album": "Get rich or die tryin'",
         "coverImage": "public/images/50 Cent.jpg",
-        "url": "./music/In Da Club.mp3"
+        "url": "public/music/In Da Club.mp3"
     },
     {
         "artist": "Michael Jackson",
         "song": "Bad",
+        "album": "Bad",
         "coverImage": "public/images/Michael Jackson.jpg",
-        "url": "./music/Bad.m4a"
+        "url": "public/music/Bad.m4a"
     }
 ]

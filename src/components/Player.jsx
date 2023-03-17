@@ -8,12 +8,16 @@ import { randomNumberGenerator } from "../utils";
 export default class Player extends Component {
     constructor(props) {
         super(props);
-        this.state = { isPlaying: false, songs: [] };
+        this.state = { isPlaying: false, songs: [], currentSong: {} };
         this.handlePlay = this.handlePlay.bind(this);
     }
 
     handlePlay() {
         this.setState((prevState) => ({ isPlaying: !prevState.isPlaying }));
+
+        this.state.isPlaying === true
+            ? document.querySelector(".audio").pause()
+            : document.querySelector(".audio").play();
     }
 
     componentDidMount() {
@@ -21,12 +25,17 @@ export default class Player extends Component {
             .then((response) => response.json())
             .then((data) => {
                 this.setState((prevState) => {
-                    return { songs: data };
+                    return {
+                        songs: data,
+                        currentSong:
+                            data[randomNumberGenerator(0, data.length - 1)],
+                    };
                 });
             });
     }
 
     render() {
+        // console.log(this.state.currentSong.url);
         return (
             <div className="music-player">
                 <div
@@ -36,7 +45,10 @@ export default class Player extends Component {
                             : "music-player__info"
                     }
                 ></div>
-                <audio src=""></audio>
+                <audio
+                    className="audio"
+                    src={this.state.currentSong.url}
+                ></audio>
                 <div className="music-player__cover">
                     <img
                         className={
@@ -44,8 +56,8 @@ export default class Player extends Component {
                                 ? "music-player__image music-player__image--playing"
                                 : "music-player__image"
                         }
-                        src="public/images/50 Cent.jpg"
-                        alt=""
+                        src={this.state.currentSong.coverImage}
+                        alt={`Album cover for ${this.state.currentSong.artist}'s ${this.state.currentSong.album} album`}
                     />
                 </div>
                 <div className="music-player__controls">
