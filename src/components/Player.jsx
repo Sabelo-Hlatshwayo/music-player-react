@@ -10,6 +10,9 @@ export default class Player extends Component {
         super(props);
         this.state = { isPlaying: false, songs: [], currentSong: {} };
         this.handlePlay = this.handlePlay.bind(this);
+        this.handleNextSong = this.handleNextSong.bind(this);
+        this.handlePreviousSong = this.handlePreviousSong.bind(this);
+        this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     }
 
     handlePlay() {
@@ -18,6 +21,54 @@ export default class Player extends Component {
         this.state.isPlaying === true
             ? document.querySelector(".audio").pause()
             : document.querySelector(".audio").play();
+    }
+
+    handleNextSong() {
+        const lastIndexInPlayList = this.state.songs.length - 1;
+        let currentSongIndex = this.state.songs.indexOf(this.state.currentSong);
+
+        if (currentSongIndex === lastIndexInPlayList) {
+            this.setState((prevState) => {
+                currentSongIndex = 0;
+                return { currentSong: prevState.songs[currentSongIndex] };
+            });
+        } else {
+            this.setState((prevState) => {
+                currentSongIndex++;
+                return { currentSong: prevState.songs[currentSongIndex] };
+            });
+        }
+
+        setTimeout(() => {
+            document.querySelector(".audio").play();
+        }, 500);
+    }
+
+    handlePreviousSong() {
+        const firstIndexInPlayList = 0;
+        const lastIndexInPlayList = this.state.songs.length - 1;
+        let currentSongIndex = this.state.songs.indexOf(this.state.currentSong);
+
+        if (currentSongIndex === firstIndexInPlayList) {
+            this.setState((prevState) => {
+                currentSongIndex = lastIndexInPlayList;
+                return { currentSong: prevState.songs[currentSongIndex] };
+            });
+        } else {
+            this.setState((prevState) => {
+                currentSongIndex--;
+                return { currentSong: prevState.songs[currentSongIndex] };
+            });
+        }
+
+        setTimeout(() => {
+            document.querySelector(".audio").play();
+        }, 500);
+    }
+
+    handleTimeUpdate(e) {
+        // console.log("Time update triggered!!!");
+        // console.dir(e.target.currentTime);
     }
 
     componentDidMount() {
@@ -35,7 +86,6 @@ export default class Player extends Component {
     }
 
     render() {
-        // console.log(this.state.currentSong.url);
         return (
             <div className="music-player">
                 <div
@@ -48,6 +98,7 @@ export default class Player extends Component {
                 <audio
                     className="audio"
                     src={this.state.currentSong.url}
+                    onTimeUpdate={this.handleTimeUpdate}
                 ></audio>
                 <div className="music-player__cover">
                     <img
@@ -61,7 +112,10 @@ export default class Player extends Component {
                     />
                 </div>
                 <div className="music-player__controls">
-                    <button className="music-player__btn">
+                    <button
+                        className="music-player__btn"
+                        onClick={this.handlePreviousSong}
+                    >
                         <PreviousIcon className="music-player__icon" />
                     </button>
                     <button
@@ -74,7 +128,10 @@ export default class Player extends Component {
                             <PlayIcon className="music-player__icon" />
                         )}
                     </button>
-                    <button className="music-player__btn">
+                    <button
+                        className="music-player__btn"
+                        onClick={this.handleNextSong}
+                    >
                         <ForwardIcon className="music-player__icon" />
                     </button>
                 </div>
