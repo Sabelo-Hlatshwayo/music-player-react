@@ -29,6 +29,13 @@ export default class Player extends Component {
         console.log(this.state.songs);
         return (
             <div className="music-player">
+                <div
+                    className={
+                        this.state.isPlaying === true
+                            ? "music-player__info music-player__info--playing"
+                            : "music-player__info"
+                    }
+                ></div>
                 <audio src=""></audio>
                 <div className="music-player__cover">
                     <img
