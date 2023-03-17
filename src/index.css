@@ -40,6 +40,7 @@ body {
     top: -100%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: solid red;
 }
 
 .music-player {
@@ -50,9 +51,28 @@ body {
     box-shadow: 0 2rem 2rem 0 rgb(252 169 169 / 60%);
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 4.8rem;
-    width: 45rem;
+    width: 55rem;
+    height: 15rem;
+}
+
+.music-player__cover {
+    height: 20rem;
+    position: relative;
+}
+
+.music-player__image {
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 25%;
+    animation: rotation 3.5s infinite linear;
+    animation-play-state: paused;
+}
+
+.music-player__image.music-player__image--playing {
+    animation-play-state: running;
 }
 
 .music-player__controls {
@@ -77,4 +97,14 @@ body {
 .music-player__controls .music-player__btn:nth-child(2) .music-player__icon {
     height: 4.8rem;
     width: 4.8rem;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
