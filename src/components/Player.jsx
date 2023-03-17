@@ -3,6 +3,7 @@ import { ReactComponent as PreviousIcon } from "./icons/PreviousIcon.svg";
 import { ReactComponent as ForwardIcon } from "./icons/ForwardIcon.svg";
 import { ReactComponent as PlayIcon } from "./icons/PlayIcon.svg";
 import { ReactComponent as PauseIcon } from "./icons/PauseIcon.svg";
+import { randomNumberGenerator } from "../utils";
 
 export default class Player extends Component {
     constructor(props) {
@@ -26,7 +27,6 @@ export default class Player extends Component {
     }
 
     render() {
-        console.log(this.state.songs);
         return (
             <div className="music-player">
                 <div
