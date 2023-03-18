@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Info from "./Info";
 import Audio from "./Audio";
 import Cover from "./Cover";
 import Controls from "./Controls";
@@ -87,13 +88,7 @@ export default class Player extends Component {
     render() {
         return (
             <div className="music-player">
-                <div
-                    className={
-                        this.state.isPlaying === true
-                            ? "music-player__info music-player__info--playing"
-                            : "music-player__info"
-                    }
-                ></div>
+                <Info isPlaying={this.state.isPlaying} />
                 <Audio currentSong={this.state.currentSong.url} />
                 <Cover
                     isPlaying={this.state.isPlaying}
