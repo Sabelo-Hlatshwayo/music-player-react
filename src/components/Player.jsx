@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { ReactComponent as PreviousIcon } from "./icons/PreviousIcon.svg";
-import { ReactComponent as ForwardIcon } from "./icons/ForwardIcon.svg";
-import { ReactComponent as PlayIcon } from "./icons/PlayIcon.svg";
-import { ReactComponent as PauseIcon } from "./icons/PauseIcon.svg";
+import Controls from "./Controls";
 import { randomNumberGenerator } from "../utils";
 
 export default class Player extends Component {
@@ -111,30 +108,12 @@ export default class Player extends Component {
                         alt={`Album cover for ${this.state.currentSong.artist}'s ${this.state.currentSong.album} album`}
                     />
                 </div>
-                <div className="music-player__controls">
-                    <button
-                        className="music-player__btn"
-                        onClick={this.handlePreviousSong}
-                    >
-                        <PreviousIcon className="music-player__icon" />
-                    </button>
-                    <button
-                        className="music-player__btn"
-                        onClick={this.handlePlay}
-                    >
-                        {this.state.isPlaying === true ? (
-                            <PauseIcon className="music-player__icon" />
-                        ) : (
-                            <PlayIcon className="music-player__icon" />
-                        )}
-                    </button>
-                    <button
-                        className="music-player__btn"
-                        onClick={this.handleNextSong}
-                    >
-                        <ForwardIcon className="music-player__icon" />
-                    </button>
-                </div>
+                <Controls
+                    isPlaying={this.state.isPlaying}
+                    handlePlay={this.handlePlay}
+                    handleNextSong={this.handleNextSong}
+                    handlePreviousSong={this.handlePreviousSong}
+                />
             </div>
         );
     }
