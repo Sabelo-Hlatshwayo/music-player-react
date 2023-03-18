@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Cover from "./Cover";
 import Controls from "./Controls";
 import { randomNumberGenerator } from "../utils";
 
@@ -97,17 +98,10 @@ export default class Player extends Component {
                     src={this.state.currentSong.url}
                     onTimeUpdate={this.handleTimeUpdate}
                 ></audio>
-                <div className="music-player__cover">
-                    <img
-                        className={
-                            this.state.isPlaying
-                                ? "music-player__image music-player__image--playing"
-                                : "music-player__image"
-                        }
-                        src={this.state.currentSong.coverImage}
-                        alt={`Album cover for ${this.state.currentSong.artist}'s ${this.state.currentSong.album} album`}
-                    />
-                </div>
+                <Cover
+                    isPlaying={this.state.isPlaying}
+                    currentSong={this.state.currentSong}
+                />
                 <Controls
                     isPlaying={this.state.isPlaying}
                     handlePlay={this.handlePlay}
