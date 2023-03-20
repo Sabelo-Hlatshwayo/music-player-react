@@ -8,7 +8,13 @@ import { randomNumberGenerator } from "../utils";
 export default class Player extends Component {
     constructor(props) {
         super(props);
-        this.state = { isPlaying: false, songs: [], currentSong: {} };
+        this.state = {
+            isPlaying: false,
+            songs: [],
+            currentSong: {},
+            currentTime: 0,
+            duration: 0,
+        };
         this.handlePlay = this.handlePlay.bind(this);
         this.handleNextSong = this.handleNextSong.bind(this);
         this.handlePreviousSong = this.handlePreviousSong.bind(this);
@@ -66,9 +72,8 @@ export default class Player extends Component {
         }, 500);
     }
 
-    handleTimeUpdate(e) {
-        // console.log("Time update triggered!!!");
-        // console.dir(e.target.currentTime);
+    handleTimeUpdate(currentTime, duration) {
+        this.setState(() => ({ currentTime, duration }));
     }
 
     componentDidMount() {
@@ -86,10 +91,18 @@ export default class Player extends Component {
     }
 
     render() {
+        // console.log(this.state.currentTime);
         return (
             <div className="music-player">
-                <Info isPlaying={this.state.isPlaying} />
-                <Audio currentSong={this.state.currentSong.url} />
+                <Info
+                    isPlaying={this.state.isPlaying}
+                    currentTime={this.state.currentTime}
+                    duration={this.state.duration}
+                />
+                <Audio
+                    currentSong={this.state.currentSong.url}
+                    handleTimeUpdate={this.handleTimeUpdate}
+                />
                 <Cover
                     isPlaying={this.state.isPlaying}
                     currentSong={this.state.currentSong}
